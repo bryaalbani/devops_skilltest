@@ -1,8 +1,22 @@
 ---
 - hosts: hostlocal
   connection: local
-  
+
   tasks:
-    - assert:
+  - assert:
       that:
-        - ansible_memtotal_mb >= 128
+          - ansible_memtotal_mb >= 128
+
+
+  - name: OS and Kernel info
+      vars:
+        msg: |
+        Distribution: {{ ansible_distribution }}
+        Kernel: {{ ansible_kernel }}
+        Architecture: {{ ansible_architecture }}
+        RAM: {{ ansible_memtotal_mb }}
+        Host: {{ansible_hostname }}
+        MemFree: {{ ansible_memfree_mb }}
+        ProcessorType: {{ ansible_processor }}
+      debug:
+        msg: "{{ msg.split('\n') }}"

@@ -1,5 +1,12 @@
-provider "docker" {
-  host = "unix:///var/run/docker.soc"
+terraform {
+  required_providers {
+    docker = {
+      source = "kreuzwerker/docker"
+    }
+  }
 }
 
+provider "docker" {
+  # Configuration options
+}
 
